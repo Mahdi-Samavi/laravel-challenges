@@ -15,7 +15,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    #[Filter(User::class, ['name', 'email'])]
+    #[Filter(User::class, 'and', ['id'])]
+    #[Filter(User::class, 'like', ['email', 'name'])]
+    #[Filter(User::class, 'or', ['email_verified_at'])]
     public function index(Request $request, $users)
     {
         dump($users);
